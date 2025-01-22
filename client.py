@@ -4,7 +4,7 @@ import flwr as fl
 
 # Load dataset for this client
 client_id = 0  # Change this for each VM (0, 1, 2, ...)
-data = np.load(f"client_{client_id}.npz")
+data = np.load(f"client_{client_id}.csv")
 X_train, y_train = data["X_train"], data["y_train"]
 X_test, y_test = data["X_test"], data["y_test"]
 
@@ -41,4 +41,4 @@ class NetflixClient(fl.client.NumPyClient):
         return loss, len(X_test), {"accuracy": accuracy}
 
 # Start Flower client
-fl.client.start_numpy_client(server_address="[SERVER_IP]:8080", client=NetflixClient())
+fl.client.start_numpy_client(server_address="24.4.4.100:8080", client=NetflixClient())
